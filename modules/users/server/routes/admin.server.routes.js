@@ -17,8 +17,8 @@ module.exports = function (app) {
 
   // Single user routes
   app.route('/api/users/:userId')
-    .get(adminPolicy.isAllowed, admin.read)
-    .put(adminPolicy.isAllowed, admin.update)
+    // .get(adminPolicy.isAllowed, admin.read)
+    .put(admin.update)
     // .delete(adminPolicy.isAllowed, admin.delete);
     .delete(admin.delete);
 

@@ -87,6 +87,14 @@ var UserSchema = new Schema({
     type: String,
     default: ''
   },
+  guide: {
+    type: Boolean,
+    default: false
+  },
+  photographer: {
+    type: Boolean,
+    default: false
+  },
   salt: {
     type: String
   },
