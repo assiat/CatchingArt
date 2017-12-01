@@ -1,0 +1,22 @@
+<section>
+  <div class="page-header">
+    <h1>Trophies</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="trophy in vm.trophies"
+       ui-sref="trophies.view({ trophyId: trophy._id })"
+       class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="trophy.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="trophy.user" ng-bind="trophy.user.displayName"></span>
+        <span ng-if="!trophy.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="trophy.name"></h4>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="vm.trophies.$resolved && !vm.trophies.length">
+    No Trophies yet, why don't you <a ui-sref="trophies.create">create one</a>?
+  </div>
+</section>
