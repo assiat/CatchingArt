@@ -64,10 +64,6 @@ var UserSchema = new Schema({
     default: '',
     validate: [validateLocalStrategyProperty, 'Please fill in your last name']
   },
-  displayName: {
-    type: String,
-    trim: true
-  },
   email: {
     type: String,
     index: {
@@ -145,11 +141,15 @@ UserSchema.pre('save', function (next) {
  */
 UserSchema.pre('validate', function (next) {
   if (this.provider === 'local' && this.password && this.isModified('password')) {
-    var result = owasp.test(this.password);
-    if (result.errors.length) {
-      var error = result.errors.join(' ');
-      this.invalidate('password', error);
+    if (this.password.length <6) {
+      this.invalidate('password', 'Your password need to have at least 6 characters');
     }
+
+    // var result = owasp.test(this.password);
+    // if (result.errors.length) {
+    //   var error = result.errors.join(' ');
+    //   this.invalidate('password', error);
+    // }
   }
 
   next();
